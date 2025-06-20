@@ -35,6 +35,10 @@ ENV/
 outputs/
 !outputs/.gitkeep
 
+# Uploads
+static/uploads/*
+!static/uploads/.gitkeep
+
 # Model cache
 .cache/
 .huggingface/

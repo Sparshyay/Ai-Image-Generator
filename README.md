@@ -1,31 +1,89 @@
 # AI Image Generator
 
-This project uses Stable Diffusion to generate images from text prompts.
+A powerful web-based AI image generator using Stable Diffusion 2.1. Create stunning images from text prompts with advanced controls.
 
-## Setup
+## Features
 
-1. Install the required packages:
+- 🖼️ Generate high-quality images from text prompts
+- 🎨 Supports negative prompts to exclude unwanted elements
+- ⚡ Fast generation with GPU acceleration
+- 🌐 Web interface for easy use
+- 🎛️ Advanced controls for fine-tuning results
+- 📱 Responsive design works on all devices
+
+## Local Development
+
+1. Clone the repository:
+```bash
+git clone https://github.com/Sparshyay/Ai-Image-Generator.git
+cd Ai-Image-Generator
+```
+
+2. Install the required packages:
 ```bash
 pip install -r requirements.txt
 ```
 
-2. Make sure you have a CUDA-capable GPU and the necessary NVIDIA drivers installed.
+3. Run the development server:
+```bash
+python app.py
+```
+
+4. Open your browser and visit: http://localhost:5000
+
+## Deploy to Vercel
+
+1. Install Vercel CLI (if not already installed):
+```bash
+npm install -g vercel
+```
+
+2. Login to your Vercel account:
+```bash
+vercel login
+```
+
+3. Deploy the application:
+```bash
+vercel
+```
+
+4. Follow the prompts to complete the deployment.
+
+## Environment Variables
+
+For local development, create a `.env` file with the following variables:
+
+```
+# Optional: Set a different port (default: 5000)
+PORT=5000
+
+# Optional: Enable debug mode (not recommended for production)
+FLASK_DEBUG=1
+```
 
 ## Usage
 
-You can generate images by running the main script:
-```bash
-python image_generator.py
-```
+1. Enter your desired prompt in the text area
+2. (Optional) Add a negative prompt to exclude unwanted elements
+3. Adjust the settings as needed:
+   - **Steps**: More steps = better quality but slower (50-100 recommended)
+   - **Guidance Scale**: How closely to follow the prompt (7-12 recommended)
+   - **Width/Height**: Image dimensions (must be multiples of 8)
+4. Click "Generate Image"
+5. Download your generated image when complete
 
-The script will generate an image based on a default prompt. You can modify the prompt in the `image_generator.py` file or create your own function calls to generate different images.
+## API Endpoints
 
-## Custom Usage
+The application provides the following API endpoints:
 
-To generate your own images, use the `generate_image()` function:
-```python
-from image_generator import generate_image
+- `POST /generate` - Generate an image
+  - Parameters: `prompt`, `negative_prompt` (optional), `steps`, `guidance_scale`, `width`, `height`
+  - Returns: JSON with `success`, `image_url`, and `filename`
 
-# Generate an image with a custom prompt
-generate_image("A beautiful sunset over a mountain landscape", "my_image.png")
-```
+- `GET /health` - Health check endpoint
+  - Returns: `{"status": "ok"}`
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
